@@ -1,0 +1,11 @@
+.flutter-plugins
+.DS_Store
+.flutter-plugins-dependencies
+.flutter_export_environment.sh
+flutter_export_environment.sh
+Generated.xcconfig
+.packages
+package_config.json
+local.properties
+.idea
+.dart_tool
