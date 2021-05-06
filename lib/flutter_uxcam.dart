@@ -6,12 +6,12 @@ class FlutterUxcam {
   static const MethodChannel _channel = const MethodChannel('flutter_uxcam');
 
   static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
+    final String version = (await _channel.invokeMethod<String>('getPlatformVersion'))!;
     return version;
   }
 
   static Future<bool> startWithKey(String key) async {
-    bool status = await _channel.invokeMethod('startWithKey', {"key": key});
+    bool status = (await _channel.invokeMethod<bool>('startWithKey', {"key": key}))!;
     return status;
   }
 
@@ -49,12 +49,12 @@ class FlutterUxcam {
     await _channel.invokeMethod('setUserIdentity', {"key": userIdentity});
   }
 
-  static Future<void> setUserProperty(String key, String value) async {
+  static Future<void> setUserProperty(String key, String? value) async {
     await _channel
         .invokeMethod('setUserProperty', {"key": key, "value": value});
   }
 
-  static Future<void> setSessionProperty(String key, String value) async {
+  static Future<void> setSessionProperty(String key, String? value) async {
     await _channel
         .invokeMethod('setSessionProperty', {"key": key, "value": value});
   }
@@ -64,13 +64,13 @@ class FlutterUxcam {
   }
 
   static Future<void> logEventWithProperties(
-      String eventName, Map<String, dynamic> properties) async {
+      String eventName, Map<String, dynamic>? properties) async {
     await _channel.invokeMethod('logEventWithProperties',
         {"eventName": eventName, "properties": properties});
   }
 
   static Future<bool> isRecording() async {
-    bool starter = await _channel.invokeMethod('isRecording');
+    bool starter = (await _channel.invokeMethod<bool>('isRecording'))!;
     return starter;
   }
 
@@ -91,7 +91,7 @@ class FlutterUxcam {
   }
 
   static Future<bool> optInOverallStatus() async {
-    final bool optStatus = await _channel.invokeMethod('optInOverallStatus');
+    final bool optStatus = (await _channel.invokeMethod<bool>('optInOverallStatus'))!;
     return optStatus;
   }
 
@@ -105,7 +105,7 @@ class FlutterUxcam {
 
   static Future<bool> optInVideoRecordingStatus() async {
     final bool optStatus =
-        await _channel.invokeMethod('optInVideoRecordingStatus');
+        (await _channel.invokeMethod<bool>('optInVideoRecordingStatus'))!;
     return optStatus;
   }
 
@@ -124,7 +124,7 @@ class FlutterUxcam {
   static Future<bool> optInSchematicRecordingStatus() async {
     if (Platform.isIOS) {
       final bool optStatus =
-          await _channel.invokeMethod('optInSchematicRecordingStatus');
+          (await _channel.invokeMethod<bool>('optInSchematicRecordingStatus'))!;
       return optStatus;
     }
     return false;
@@ -145,7 +145,7 @@ class FlutterUxcam {
   }
 
   static Future<bool> getMultiSessionRecord() async {
-    bool starter = await _channel.invokeMethod('getMultiSessionRecord');
+    bool starter = (await _channel.invokeMethod<bool>('getMultiSessionRecord'))!;
     return starter;
   }
 
@@ -163,7 +163,7 @@ class FlutterUxcam {
   }
 
   static Future<int> pendingUploads() async {
-    int count = await _channel.invokeMethod('pendingUploads');
+    int count = (await _channel.invokeMethod<int>('pendingUploads'))!;
     return count;
   }
 
@@ -175,13 +175,13 @@ class FlutterUxcam {
     await _channel.invokeMethod('stopApplicationAndUploadData');
   }
 
-  static Future<String> urlForCurrentUser() async {
-    String url = await _channel.invokeMethod('urlForCurrentUser');
+  static Future<String?> urlForCurrentUser() async {
+    String? url = await _channel.invokeMethod('urlForCurrentUser');
     return url;
   }
 
-  static Future<String> urlForCurrentSession() async {
-    String url = await _channel.invokeMethod('urlForCurrentSession');
+  static Future<String?> urlForCurrentSession() async {
+    String? url = await _channel.invokeMethod('urlForCurrentSession');
     return url;
   }
 
@@ -203,7 +203,7 @@ class FlutterUxcam {
   }
 
   static Future<void> reportBugEvent(String eventName,
-      [Map<String, dynamic> properties]) async {
+      [Map<String, dynamic>? properties]) async {
     await _channel.invokeMethod(
         'reportBugEvent', {"eventName": eventName, "properties": properties});
   }

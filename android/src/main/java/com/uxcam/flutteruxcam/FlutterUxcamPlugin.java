@@ -120,7 +120,6 @@ public class FlutterUxcamPlugin implements MethodCallHandler {
             result.success(null);
         } else if ("optInOverallStatus".equals(call.method)) {
             result.success(UXCam.optInOverallStatus());
-            result.success(null);
         } else if ("optIntoVideoRecording".equals(call.method)) {
             UXCam.optIntoVideoRecording();
             result.success(null);
